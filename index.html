@@ -62,14 +62,20 @@
       https://script.google.com/macros/s/AKfycbwVe6i6iLyiCjOzsVv4oS9wiEHMLyaqlXBaY_Its9BP-PqkituL5g34-F7Owtnqhtw8/exec;
 
  
+fetch(
 
-    fetch(API_URL + "?action=test")
+  API_URL + "?action=test",
 
-      .then(function(response) {
+  {
 
-        return response.json();
+    method: "GET",
 
-      })
+    redirect: "follow"
+
+  }
+
+)
+    
 
       .then(function(data) {
 
