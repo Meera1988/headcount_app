@@ -1,16 +1,11 @@
+
 <!DOCTYPE html>
 
-<html lang="en">
-
- 
+<html>
 
 <head>
 
- 
-
   <meta charset="UTF-8">
-
- 
 
   <meta
 
@@ -24,14 +19,6 @@
 
  
 
-  <meta
-
-    name="theme-color"
-
-    content="#4338ca">
-
- 
-
   <link
 
     rel="manifest"
@@ -40,47 +27,11 @@
 
  
 
-  <style>
+  <meta
 
- 
+    name="theme-color"
 
-    html,
-
-    body {
-
-      margin: 0;
-
-      padding: 0;
-
-      width: 100%;
-
-      height: 100%;
-
-      overflow: hidden;
-
-      background: #f3f4f6;
-
-    }
-
- 
-
-    #app {
-
-      width: 100%;
-
-      height: 100%;
-
-      border: none;
-
-      display: block;
-
-    }
-
- 
-
-  </style>
-
- 
+    content="#4338ca">
 
 </head>
 
@@ -90,15 +41,15 @@
 
  
 
-  <iframe
+  <h2>Headcount API Test</h2>
 
-    id="app"
+ 
 
-    src=https://script.google.com/macros/s/AKfycbwVe6i6iLyiCjOzsVv4oS9wiEHMLyaqlXBaY_Its9BP-PqkituL5g34-F7Owtnqhtw8/exec
+  <div id="result">
 
-    allow="clipboard-write">
+    Testing connection...
 
-  </iframe>
+  </div>
 
  
 
@@ -106,31 +57,47 @@
 
  
 
-    if ("serviceWorker" in navigator) {
+    const API_URL =
+
+      https://script.google.com/macros/s/AKfycbwVe6i6iLyiCjOzsVv4oS9wiEHMLyaqlXBaY_Its9BP-PqkituL5g34-F7Owtnqhtw8/exec;
 
  
 
-      window.addEventListener(
+    fetch(API_URL + "?action=test")
 
-        "load",
+      .then(function(response) {
 
-        function() {
+        return response.json();
 
- 
+      })
 
-          navigator.serviceWorker
-
-            .register("./sw.js");
+      .then(function(data) {
 
  
 
-        }
+        document.getElementById("result").innerHTML =
 
-      );
+          "SUCCESS<br><br>" +
+
+          data.message;
 
  
 
-    }
+      })
+
+      .catch(function(error) {
+
+ 
+
+        document.getElementById("result").innerHTML =
+
+          "FAILED<br><br>" +
+
+          error.message;
+
+ 
+
+      });
 
  
 
@@ -139,7 +106,5 @@
  
 
 </body>
-
- 
 
 </html>
